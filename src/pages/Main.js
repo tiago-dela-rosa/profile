@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './Main.css';
 
 import api from '../services/api';
+import config from '../services/config';
 import logo from '../assets/logo.svg';
 import like from '../assets/like.svg';
 import dislike from '../assets/dislike.svg';
@@ -30,7 +31,7 @@ export default function Main({ match }){
 
 	useEffect(() => {
 
-		const socket = io('http://localhost:3333', {
+		const socket = io(config.backendUrl, {
 			query: { user: match.params.id }
 		});
 
@@ -62,9 +63,9 @@ export default function Main({ match }){
 
 	return (
 		<div className="main-container">
-			<Link to="/">	
-				<img src={logo} alt="Tindev" />
-			</Link>	
+			<Link to="/tindev">	
+				<img src={logo} alt="Tindev" />		
+			</Link>
 			{ users.length > 0 ? (
 				<ul>
 					{
@@ -90,7 +91,7 @@ export default function Main({ match }){
 					}					
 				</ul>					
 			) : (
-				<div className="empty">Acabou... 😧</div>
+				<div className="empty">Acabou... <span role="img" aria-label="sad">😧</span></div>
 			)}
 
 			{ matchDev && (

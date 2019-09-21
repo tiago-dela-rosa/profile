@@ -10,6 +10,7 @@
 	grid-template-columns: repeat(3, 1fr);
 	grid-gap: 30px;
 	margin-top: 50px;
+	flex-wrap: wrap;
 }
 
 .main-container ul li{
@@ -108,4 +109,7 @@
 	cursor: pointer;
 }
 
-
+@media only screen and (max-width: 600px) {
+	.main-container ul{grid-template-columns: repeat(1, 1fr);}
+	.main-container ul li{flex-direction: column; flex-wrap: wrap;}
+}
